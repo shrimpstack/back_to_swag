@@ -16,7 +16,14 @@ const 畫面更新器 = (() => {
     碰撞控制.落下碰撞處理();
     所有物件.forEach(物件 => 物件.儲存位置 && 物件.儲存位置());
   }
+  function 攝影機位置更新() {
+    let x = Math.floor((人物item.x + 18 + 480) / 960);
+    let y = Math.floor((人物item.y + 384) / 768);
+    主畫面.style.setProperty("--camera_x", x * 960 + "px");
+    主畫面.style.setProperty("--camera_y", y * 768 + "px");
+  }
   function 渲染() {
+    攝影機位置更新();
     渲染_所有物件();
   }
   function 渲染_所有物件() {

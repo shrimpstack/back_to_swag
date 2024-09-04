@@ -13,11 +13,12 @@
 .view .scene {
   position: absolute;
   left: calc(var(--camera_x) * -1);
-  top: calc(var(--camera_y) * -1);
+  top: calc(var(--camera_y) * 1);
   width: 0;
   height: 0;
   margin-left: calc(var(--width) / 2);
   margin-top: calc(var(--height) / 2);
+  transition: left .4s, top .4s;
 }
 
 .view .item {

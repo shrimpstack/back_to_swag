@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>回到船上</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./js/api.js"></script>
+    <script src="./js/universal.js"></script>
+    <script src="./js/畫面更新器.js"></script>
+    <script src="./js/重力控制.js"></script>
+    <script src="./js/運動控制.js"></script>
+    <script src="./js/碰撞控制.js"></script>
+    <script src="./js/碰撞箱.js"></script>
+    <script src="./js/物件.js"></script>
+    <script src="./js/場景物件.js"></script>
+    <script src="./js/人物物件.js"></script>
+    <script src="./js/玩家操作.js"></script>
+    <link rel="stylesheet" href="./css/view.css"/>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        width: 100%;
+        display: grid;
+      }
+      #主畫面 {
+        margin: auto;
+        --sq_size: 48px;
+        --width: calc(var(--sq_size) * 20);
+        --height: calc(var(--sq_size) * 16);
+        background: #0003;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="主畫面" class="view">
+      <div class="scene">
+      </div>
+    </div>
+    <script>
+      const 主場景 = document.querySelector("#主畫面 .scene");
+      let 人物item;
+      window.addEventListener("load", async () => {
+        let res = await post("取得場景配置");
+        res.data.forEach(item => {
+          if(item.物件類型 == "藍色方塊") 主場景.append(新增物件_場景物件().直接設定位置值(48 * item.初始x, 48 * item.初始y));
+        });
+        人物item = 新增物件_人物({重力倍數: 1}).直接設定位置值(6 - 48 * 2, 300);
+        人物item.innerText = "人物";
+        document.querySelector(".view .scene").append(人物item);
+        畫面更新器.渲染();
+        重力控制.開關();
+        畫面更新器.開關();
+      });
+    </script>
+  </body>
+</html>

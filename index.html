@@ -30,12 +30,27 @@
         --height: calc(var(--sq_size) * 16);
         background: #0003;
       }
+      #測試用面板 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 8px;
+      }
     </style>
   </head>
   <body>
     <div id="主畫面" class="view">
       <div class="scene">
       </div>
+    </div>
+    <div id="測試用面板">
+      <select onchange="玩家操作.測試用_切換角色數值(this.value)">
+        <option value="梵">梵/JMP:2/SPD:6</option>
+        <option value="敏">敏/JMP:2/SPD:5</option>
+        <option value="17">17/JMP:1.5/SPD:6</option>
+        <option value="普">船長、37/JMP:1.5/SPD:5</option>
+        <option value="托">托恩/JMP:1/SPD:4</option>
+      </select>
     </div>
     <script>
       const 主場景 = document.querySelector("#主畫面 .scene");
